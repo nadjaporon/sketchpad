@@ -9,6 +9,8 @@ let gridSize = height / numberOfGrids;
 const btnStart = document.querySelector('#reset');
 const drawPAd = document.querySelector('#drawpad');
 
+
+// Click Event beim Button Start
 btnStart.addEventListener('click', () => {
 
     drawPAd.style.height = height + 'px';
@@ -19,22 +21,56 @@ btnStart.addEventListener('click', () => {
     drawPAd.style.gridAutoColumns = gridSize + "px";
 
     for (let i = 0; i < allGrids; i++) {
-        let newDiv = document.createElement('div');
-        drawPAd.appendChild(newDiv);
+        addnewBox();
     }
+    addClasses();
+});
+
+// Div erstellen
+const addnewBox = () => {
+    let newDiv = document.createElement('div');
+    drawPAd.appendChild(newDiv);
+}
+
+// Klassen zu Divs hinzufügen
+const addClasses = () => {
+
     const div = document.querySelectorAll('#drawpad div');
 
+    div.forEach(element => mouseOverListener(element));     // MouseOverListener() je div setzen
+
     for (let i = 0; i < allGrids; i++) {
+
         div[i].classList.add('box');
 
         let lastColumn = i + 1;
         let lastRow = allGrids - numberOfGrids - 1;
 
         if (lastColumn % numberOfGrids == 0) {
-            div[i].classList.add('lastColumn');
+            div[i].classList.add('lastColumn');     // Klasse letzte Spalte
         }
         if (i > lastRow) {
-            div[i].classList.add('lastRow');
+            div[i].classList.add('lastRow');        // Klasse letzte Reihe
         }
     }
-});
+}
+
+
+// mouseListener pro DIV Selektor setzen
+const mouseOverListener = (qSelector) => {
+
+    qSelector.addEventListener('mouseover', () => {
+        qSelector.style.backgroundColor = randomRGB();
+    });
+}
+
+// Zufalls RGB Wert erstellen
+const randomRGB = () => {
+    let r = Math.floor(Math.random()*256);
+    let g = Math.floor(Math.random()*256);
+    let b = Math.floor(Math.random()*256);
+
+    let rgb = "rgb(" + r + ", " + g + ", " + b + ")";
+
+    return rgb;
+}

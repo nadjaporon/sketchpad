@@ -15,7 +15,6 @@ let init = 1;
 const promptText = "Wieviele Spalten/Reihen möchtest Du?";
 
 
-
 // Click Event beim Button Start
 btnStart.addEventListener('click', () => {
 

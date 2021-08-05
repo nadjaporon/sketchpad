@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.content {
+  width: 100%;
+  text-align: center;
+}
+
+.content #reset {
+  margin: 30px 0;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  margin: auto;
+}
+
+.container .box {
+  border: 1px solid black;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.container .lastColumn {
+  border-right: 1px solid black;
+}
+
+.container .lastRow {
+  border-bottom: 1px solid black;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -2,16 +2,44 @@
 
 let height = 600;
 let numberOfGrids = 16;
-let allGrids = numberOfGrids * numberOfGrids;
+let maxGrids = 100;
 
-let gridSize = height / numberOfGrids;
+let allGrids;
+let gridSize;
 
 const btnStart = document.querySelector('#reset');
 const drawPAd = document.querySelector('#drawpad');
 
+let init = 1;
+
+const promptText = "Wieviele Spalten/Reihen möchtest Du?";
+
+
 
 // Click Event beim Button Start
 btnStart.addEventListener('click', () => {
+
+    if (init == 1) {
+        init = 0;
+        gridSettings(numberOfGrids);
+    } else {
+        while (drawPAd.hasChildNodes()) {
+            drawPAd.removeChild(drawPAd.firstChild);
+        }
+        do {
+            numberOfGrids = prompt(promptText, numberOfGrids);
+        } while (numberOfGrids > maxGrids);
+
+        gridSettings(numberOfGrids);
+
+    }
+});
+
+
+const gridSettings = (numberOfGrids) => {
+
+    allGrids = numberOfGrids * numberOfGrids;
+    gridSize = height / numberOfGrids;
 
     drawPAd.style.height = height + 'px';
     drawPAd.style.width = height + 'px';
@@ -24,7 +52,7 @@ btnStart.addEventListener('click', () => {
         addnewBox();
     }
     addClasses();
-});
+}
 
 // Div erstellen
 const addnewBox = () => {
@@ -66,9 +94,9 @@ const mouseOverListener = (qSelector) => {
 
 // Zufalls RGB Wert erstellen
 const randomRGB = () => {
-    let r = Math.floor(Math.random()*256);
-    let g = Math.floor(Math.random()*256);
-    let b = Math.floor(Math.random()*256);
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
 
     let rgb = "rgb(" + r + ", " + g + ", " + b + ")";
 
